@@ -8,12 +8,11 @@
 
 import axios from 'axios'
 import React from 'react'
-import { data } from 'react-router-dom';
 
 const api = axios.create({
-    baseURL: "https://separate-backend.vercel.app/api/v1"
+    baseURL: "/api"
 });
   
 
 
-export const requestOTP = (data) => api.post('/request-otp', data);
+export default api
