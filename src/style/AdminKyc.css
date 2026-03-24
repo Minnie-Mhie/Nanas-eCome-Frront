@@ -1,0 +1,30 @@
+.kyc-total {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.kyc-endpoint {
+  font-family: monospace;
+  font-size: 11px;
+  background: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.kyc-ip {
+  font-family: monospace;
+  font-size: 12px;
+  color: #666;
+}
+
+.kyc-suspended-text {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.kyc-sub { font-size: 14px; }
+.kyc-user-name { font-weight: 600; font-size: 13px; }
+.kyc-user-email { font-size: 11px; color: #aaa; }
+.kyc-action-text { font-size: 13px; }
+.kyc-time-text { font-size: 12px; color: #888; }

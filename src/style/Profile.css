@@ -1,0 +1,82 @@
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lavender), var(--pink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 32px;
+  color: #fff;
+  margin: 0 auto 16px;
+  box-shadow: 0 8px 24px rgba(255,45,139,0.25);
+}
+
+.profile-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--navy);
+}
+
+.profile-email {
+  font-size: 13px;
+  color: var(--gray);
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.profile-since {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: #bbb;
+}
+
+.profile-detail-title {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+.profile-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.profile-detail-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-detail-icon {
+  color: var(--plum);
+  font-size: 15px;
+}
+
+.profile-detail-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-detail-value {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy);
+  margin-top: 2px;
+}

@@ -1,0 +1,34 @@
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--lavender);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--plum);
+  flex-shrink: 0;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.user-email {
+  font-size: 13px;
+  color: #666;
+}
+
+.users-total {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.users-sub { font-size: 14px; }
+.user-index { font-size: 13px; color: #aaa; }
+.user-date { font-size: 13px; color: #888; }
+.users-search-group { max-width: 400px; }

@@ -1,0 +1,244 @@
+.role-pick-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+.role-pick-logo {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.role-pick-logo span { color: var(--pink); }
+
+.role-pick-heading {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 24px 0 8px;
+  text-align: center;
+}
+
+.role-pick-sub {
+  font-size: 15px;
+  color: #888;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.role-cards {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 680px;
+}
+
+.role-card {
+  flex: 1;
+  min-width: 260px;
+  max-width: 300px;
+  border-radius: 20px;
+  padding: 36px 28px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.role-card-buyer {
+  background: #fff;
+  border-color: #e8e0f7;
+  box-shadow: 0 8px 32px rgba(27,27,110,0.08);
+}
+
+.role-card-seller {
+  background: linear-gradient(135deg, #1B1B6E 0%, #2D0A6B 100%);
+  border-color: #FF2D8B;
+  box-shadow: 0 8px 32px rgba(255,45,139,0.25);
+}
+
+.role-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(27,27,110,0.18);
+}
+
+.role-card-seller:hover {
+  box-shadow: 0 16px 48px rgba(255,45,139,0.35);
+}
+
+.role-card-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 30px;
+}
+
+.role-card-buyer .role-card-icon-wrap {
+  background: linear-gradient(135deg, rgba(201,168,240,0.25), rgba(255,45,139,0.15));
+  color: #FF2D8B;
+}
+
+.role-card-seller .role-card-icon-wrap {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.role-card-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.role-card-buyer .role-card-title  { color: #1B1B6E; }
+.role-card-seller .role-card-title { color: #fff; }
+
+.role-card-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.role-card-buyer .role-card-desc  { color: #777; }
+.role-card-seller .role-card-desc { color: rgba(255,255,255,0.75); }
+
+.role-card-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  text-align: left;
+}
+
+.role-card-perks li {
+  font-size: 13px;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.role-card-buyer .role-card-perks li  { color: #555; }
+.role-card-seller .role-card-perks li { color: rgba(255,255,255,0.85); }
+
+.role-card-perks li i { font-size: 14px; }
+.role-card-buyer .role-card-perks li i  { color: #FF2D8B; }
+.role-card-seller .role-card-perks li i { color: #C9A8F0; }
+
+.role-card-btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.role-card-btn:hover { opacity: 0.88; }
+
+.role-card-buyer .role-card-btn {
+  background: linear-gradient(135deg, #1B1B6E, #FF2D8B);
+  color: #fff;
+}
+
+.role-card-seller .role-card-btn {
+  background: #FF2D8B;
+  color: #fff;
+}
+
+.role-login-link {
+  margin-top: 32px;
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+}
+
+.role-login-link a {
+  color: #FF2D8B;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.register-form-card { max-width: 520px; }
+
+.register-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 14px;
+  padding: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.register-back-btn:hover { color: var(--navy); }
+
+.register-role-badge-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.register-role-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.register-role-badge-buyer {
+  background: rgba(255,45,139,0.1);
+  color: #FF2D8B;
+}
+
+.register-role-badge-vendor {
+  background: linear-gradient(135deg, #1B1B6E, #2D0A6B);
+  color: #fff;
+}
+
+.register-vendor-box {
+  background: rgba(201,168,240,0.15);
+  border: 1px solid var(--lavender);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.register-vendor-label {
+  font-size: 13px;
+  color: var(--plum);
+  font-weight: 700;
+}
+
+.register-vendor-note {
+  color: var(--plum);
+  font-size: 12px;
+}
+
+.register-signin-link {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: #888;
+}
+
+.register-signin-anchor {
+  color: var(--pink);
+  font-weight: 700;
+  text-decoration: none;
+}

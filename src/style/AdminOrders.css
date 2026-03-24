@@ -1,0 +1,31 @@
+.orders-total {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.order-id {
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--plum);
+}
+
+.order-customer-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.order-customer-email {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.order-no-action {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.orders-sub { font-size: 14px; }
+.order-items-count { font-size: 13px; }
+.order-date { font-size: 13px; color: #888; }
+.order-status-select { width: 140px; }

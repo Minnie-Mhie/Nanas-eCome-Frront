@@ -1,0 +1,157 @@
+.vendor-products-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.vendor-products-header h2 {
+  margin-bottom: 4px;
+}
+
+.vendor-products-sub {
+  color: #888;
+  font-size: 14px;
+  margin: 0;
+}
+
+.vendor-form-card {
+  border-left: 4px solid var(--pink);
+  margin-bottom: 24px;
+}
+
+.vendor-edit-card {
+  border-left: 4px solid var(--plum);
+  margin-bottom: 24px;
+}
+
+.vendor-edit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.vendor-edit-header h5 {
+  margin: 0;
+  color: var(--navy);
+}
+
+.vendor-edit-icon {
+  color: var(--plum);
+  margin-right: 8px;
+}
+
+.vendor-form-title {
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+
+.vendor-video-hint {
+  color: #888;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.vendor-video-hint i {
+  color: red;
+  margin-right: 4px;
+}
+
+.vendor-optional-label {
+  color: #aaa;
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.vendor-image-label-note {
+  color: #aaa;
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.vendor-img-preview {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 8px;
+  display: block;
+}
+
+.vendor-form-notice {
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 16px;
+}
+
+.vendor-form-notice small {
+  color: #92400E;
+}
+
+.vendor-form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.vendor-table-loading {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.vendor-table-empty {
+  text-align: center;
+  padding: 40px 0;
+  color: #aaa;
+}
+
+.vendor-table-empty i {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.vendor-product-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #f0f0f0;
+}
+
+.vendor-product-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.vendor-product-desc {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.vendor-product-category {
+  font-size: 13px;
+  color: var(--plum);
+  font-weight: 600;
+}
+
+.vendor-product-price {
+  font-weight: 700;
+  color: var(--pink);
+}
+
+.vendor-product-qty {
+  font-size: 13px;
+}
+
+.vendor-product-date {
+  font-size: 13px;
+  color: #888;
+}
