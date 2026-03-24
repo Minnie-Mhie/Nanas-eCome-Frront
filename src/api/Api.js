@@ -10,7 +10,7 @@ import axios from 'axios'
 import React from 'react'
 
 const api = axios.create({
-    baseURL: "https://separate-backend.vercel.app"
+    baseURL: "separate-backend.vercel.app"
 });
   
 
