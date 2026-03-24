@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
+import api from "../../api/Api"
 import Sidebar from "../../components/Sidebar"
 import Modal from "../../components/Modal"
 import "../../style/AdminDashboard.css"
