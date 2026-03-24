@@ -9,7 +9,7 @@ import appSlice from "./redux/appSlice.js"
 import axios from "axios";
 import axiosInstance from "./api/Axios.js";
 
-axios.get("/api/v1/products").catch(() => {})
+axios.get("${import.meta.env.VITE_API_URL}/api/v1/products").catch(() => {})
 
   // axiosInstance.get("/v1/products").catch(() => {})
 
