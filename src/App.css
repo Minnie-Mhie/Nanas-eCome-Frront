@@ -20,12 +20,12 @@
   --shadow-pink: 0 8px 24px rgba(255,45,139,0.25);
 }
 
-@font-face {
+/* @font-face {
   font-family: "Ballmain.otf";
   src: url("https://www.1001fonts.com/ballmain-font.html?text=Nana's%20Pourfection%20Hub&page=1");
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 body {
   font-family: var(--font-body);
