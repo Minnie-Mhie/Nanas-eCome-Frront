@@ -23,7 +23,9 @@ const VendorDashboard = () => {
     const fetchAll = async () => {
       try {
         const [productsRes, ordersRes, storeRes] = await Promise.all([
+          
           axios.get(`${import.meta.env.VITE_API_URL}/api/v1/products/mine`, { headers }),
+          
           axios.get(`${import.meta.env.VITE_API_URL}/api/v1/orders/vendor`, { headers }),
           axios.get(`${import.meta.env.VITE_API_URL}/api/v1/vendor/mystore`, { headers }),
         ])
