@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
 import Sidebar from "../../components/Sidebar"
 import Modal from "../../components/Modal"
-import "../../style/VendorDashboard.css"
 import axiosInstance from "../../api/axiosInstance"
-// import "../../font/ballmain font/Ballmain.otf"
+import "../../style/VendorDashboard.css"
 
 const VendorDashboard = () => {
   const [products, setProducts] = useState([])
@@ -13,33 +11,54 @@ const VendorDashboard = () => {
   const [loading, setLoading]   = useState(true)
   const [modal, setModal]       = useState({ isOpen: false, title: "", message: "", type: "info" })
 
-  const token = localStorage.getItem("token")
-  const headers = { Authorization: `Bearer ${token}` }
-
   const showModal = (title, message, type = "info") => {
     setModal({ isOpen: true, title, message, type })
   }
 
   useEffect(() => {
     const fetchAll = async () => {
+      const token = localStorage.getItem("token")
+
+      if (!token) {
+        showModal("Session Expired", "Please log in again", "danger")
+        setLoading(false)
+        return
+      }
+
+      const headers = { Authorization: `Bearer ${token}` }
+
       try {
         const [productsRes, ordersRes, storeRes] = await Promise.all([
-          
-          axios.get(`${import.meta.env.VITE_API_URL}/api/v1/products/mine`, { headers }),
-          
-          axios.get(`${import.meta.env.VITE_API_URL}/api/v1/orders/vendor`, { headers }),
-          axios.get(`${import.meta.env.VITE_API_URL}/api/v1/vendor/mystore`, { headers }),
+          axiosInstance.get("/api/v1/products/mine",  { headers }),
+          axiosInstance.get("/api/v1/orders/vendor",  { headers }),
+          axiosInstance.get("/api/v1/vendor/mystore", { headers }),
         ])
-        setProducts(productsRes.data.data)
-        setOrders(ordersRes.data.data)
-        setStore(storeRes.data.data)
+
+        setProducts(productsRes.data.data  || [])
+        setOrders(ordersRes.data.data      || [])
+        setStore(storeRes.data.data        || null)
+
       } catch (error) {
-        console.log(error)
-        showModal("Error", "Failed to load dashboard data", "danger")
+        const status  = error.response?.status
+        const message = error.response?.data?.message
+        const url     = error.config?.url
+
+        console.error(`Failed [${status}] ${url}:`, message)
+
+        if (status === 403) {
+          showModal("Access Denied", `Your account role does not have permission. (${url})`, "danger")
+        } else if (status === 404) {
+          showModal("Not Found", `Could not find resource: ${url}`, "danger")
+        } else if (status === 401) {
+          showModal("Unauthorized", "Your session has expired. Please log in again.", "danger")
+        } else {
+          showModal("Error", message || "Failed to load dashboard data", "danger")
+        }
       } finally {
         setLoading(false)
       }
     }
+
     fetchAll()
   }, [])
 
@@ -48,7 +67,7 @@ const VendorDashboard = () => {
   const rejected = products.filter(p => p.status === "rejected")
 
   const totalRevenue = orders.reduce((sum, order) => {
-    return sum + order.items.reduce((s, item) => s + (item.priceAtOrder * item.quantity), 0)
+    return sum + (order.items || []).reduce((s, item) => s + (item.priceAtOrder * item.quantity), 0)
   }, 0)
 
   const statCards = [
@@ -137,7 +156,8 @@ const VendorDashboard = () => {
                 </div>
                 {products.length === 0 ? (
                   <div className="vendor-empty-text">
-                    No products yet. <a href="/vendor/products" className="vendor-section-link">Add your first product</a>
+                    No products yet.{" "}
+                    <a href="/vendor/products" className="vendor-section-link">Add your first product</a>
                   </div>
                 ) : (
                   products.slice(0, 5).map(product => (
@@ -199,7 +219,6 @@ const VendorDashboard = () => {
     <div className="d-flex">
       <Sidebar role="vendor" />
       <div className="main-content w-100">
-
         <div className="vendor-dashboard-header">
           <div>
             <h2>{store ? store.storeName : "Vendor Dashboard"}</h2>
@@ -212,7 +231,6 @@ const VendorDashboard = () => {
         </div>
 
         {renderContent()}
-
       </div>
 
       <Modal
