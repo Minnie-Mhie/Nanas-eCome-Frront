@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom"
 import AuthGuard from "./auth/AuthGuard"
-import Cookies from "universal-cookie"
 
 import Login          from "./pages/Login"
 import Register       from "./pages/Register"
@@ -13,7 +12,6 @@ import ContactUs      from "./pages/ContactUs"
 
 import Profile        from "./pages/Profile"
 import ChangePassword from "./pages/ChangePassword"
-import Navbar from "./components/Navbar"
 
 import AdminDashboard from "./pages/admin/AdminDashboard"
 import AdminUsers     from "./pages/admin/AdminUsers"
@@ -31,9 +29,6 @@ import Cart     from "./pages/user/Cart"
 import MyOrders from "./pages/user/MyOrders"
 
 const App = () => {
-  const cookies = new Cookies()
-  const isAuth  = cookies.get("token")
-
   return (
     <Routes>
       <Route path="/"                element={<Navigate to="/home" replace />} />
@@ -44,25 +39,22 @@ const App = () => {
       <Route path="/change-password" element={<ResetPassword />}  />
       <Route path="/categories"      element={<Categories />}     />
       <Route path="/contact"         element={<ContactUs />}      />
-      
-      <Route element={<AuthGuard isAuth={isAuth} />}>
-        <Route>
-           
-          <Route path="/admin/dashboard"      element={<AdminDashboard />}  />
-          <Route path="/admin/users"          element={<AdminUsers />}      />
-          <Route path="/admin/vendors"        element={<AdminVendors />}    />
-          <Route path="/admin/products"       element={<AdminProducts />}   />
-          <Route path="/admin/orders"         element={<AdminOrders />}     />
-          <Route path="/admin/kyc"            element={<AdminKYC />}        />
-          <Route path="/vendor/dashboard"     element={<VendorDashboard />} />
-          <Route path="/vendor/products"      element={<VendorProducts />}  />
-          <Route path="/vendor/orders"        element={<VendorOrders />}    />
-          <Route path="/shop"                 element={<Shop />}            />
-          <Route path="/cart"                 element={<Cart />}            />
-          <Route path="/orders"               element={<MyOrders />}        />
-          <Route path="/me"                   element={<Profile />}         />
-          <Route path="/change-password-auth" element={<ChangePassword />} />
-        </Route>
+
+      <Route element={<AuthGuard />}>
+        <Route path="/admin/dashboard"      element={<AdminDashboard />}  />
+        <Route path="/admin/users"          element={<AdminUsers />}      />
+        <Route path="/admin/vendors"        element={<AdminVendors />}    />
+        <Route path="/admin/products"       element={<AdminProducts />}   />
+        <Route path="/admin/orders"         element={<AdminOrders />}     />
+        <Route path="/admin/kyc"            element={<AdminKYC />}        />
+        <Route path="/vendor/dashboard"     element={<VendorDashboard />} />
+        <Route path="/vendor/products"      element={<VendorProducts />}  />
+        <Route path="/vendor/orders"        element={<VendorOrders />}    />
+        <Route path="/shop"                 element={<Shop />}            />
+        <Route path="/cart"                 element={<Cart />}            />
+        <Route path="/orders"               element={<MyOrders />}        />
+        <Route path="/me"                   element={<Profile />}         />
+        <Route path="/change-password-auth" element={<ChangePassword />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

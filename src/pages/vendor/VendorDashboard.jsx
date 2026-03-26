@@ -3,7 +3,7 @@ import axios from "axios"
 import Sidebar from "../../components/Sidebar"
 import Modal from "../../components/Modal"
 import "../../style/VendorDashboard.css"
-import "../../font/ballmain font/Ballmain.otf"
+// import "../../font/ballmain font/Ballmain.otf"
 
 const VendorDashboard = () => {
   const [products, setProducts] = useState([])
