@@ -7,10 +7,11 @@ const Sidebar = ({ role }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const cookies  = new Cookies()
+  const token    = localStorage.getItem("token")
 
-  const token = localStorage.getItem("token")
-
-  const [user, setUser] = useState(null)
+  const [user, setUser]           = useState(null)
+  const [collapsed, setCollapsed] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -26,6 +27,10 @@ const Sidebar = ({ role }) => {
     }
     if (token) fetchUser()
   }, [token])
+
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [location.pathname])
 
   const handleLogout = async () => {
     try {
@@ -43,10 +48,7 @@ const Sidebar = ({ role }) => {
     }
   }
 
-  const isActive = (path) => {
-    if (location.pathname === path) return "active"
-    return ""
-  }
+  const isActive = (path) => location.pathname === path ? "active" : ""
 
   const getRoleLabel = () => {
     if (role === "admin")  return "Admin Panel"
@@ -54,89 +56,118 @@ const Sidebar = ({ role }) => {
     return "My Account"
   }
 
-  const renderAdminLinks = () => {
-    if (role !== "admin") return null
-    return (
-      <>
-        <li><Link to="/admin/dashboard" className={`sidebar-link ${isActive("/admin/dashboard")}`}><i className="bi bi-grid-fill" /> Dashboard</Link></li>
-        <li><Link to="/admin/users"     className={`sidebar-link ${isActive("/admin/users")}`}><i className="bi bi-people-fill" /> Users</Link></li>
-        <li><Link to="/admin/vendors"   className={`sidebar-link ${isActive("/admin/vendors")}`}><i className="bi bi-shop" /> Vendors</Link></li>
-        <li><Link to="/admin/products"  className={`sidebar-link ${isActive("/admin/products")}`}><i className="bi bi-box-seam" /> Products</Link></li>
-        <li><Link to="/admin/orders"    className={`sidebar-link ${isActive("/admin/orders")}`}><i className="bi bi-bag-check-fill" /> Orders</Link></li>
-        <li><Link to="/admin/kyc"       className={`sidebar-link ${isActive("/admin/kyc")}`}><i className="bi bi-shield-lock-fill" /> KYC</Link></li>
-        <li><Link to="/shop"            className={`sidebar-link ${isActive("/shop")}`}><i className="bi bi-storefront" /> Marketplace</Link></li>
-      </>
-    )
-  }
+  const adminLinks = [
+    { to: "/admin/dashboard", icon: "bi-grid-fill",        label: "Dashboard"   },
+    { to: "/admin/users",     icon: "bi-people-fill",      label: "Users"       },
+    { to: "/admin/vendors",   icon: "bi-shop",             label: "Vendors"     },
+    { to: "/admin/products",  icon: "bi-box-seam",         label: "Products"    },
+    { to: "/admin/orders",    icon: "bi-bag-check-fill",   label: "Orders"      },
+    { to: "/admin/kyc",       icon: "bi-shield-lock-fill", label: "KYC"         },
+    { to: "/shop",            icon: "bi-storefront",       label: "Marketplace" },
+  ]
 
-  const renderVendorLinks = () => {
-    if (role !== "vendor") return null
-    return (
-      <>
-        <li><Link to="/vendor/dashboard" className={`sidebar-link ${isActive("/vendor/dashboard")}`}><i className="bi bi-grid-fill" /> Dashboard</Link></li>
-        <li><Link to="/vendor/products"  className={`sidebar-link ${isActive("/vendor/products")}`}><i className="bi bi-box-seam" /> My Products</Link></li>
-        <li><Link to="/vendor/orders"    className={`sidebar-link ${isActive("/vendor/orders")}`}><i className="bi bi-bag-check-fill" /> Orders</Link></li>
-        <li><Link to="/shop"             className={`sidebar-link ${isActive("/shop")}`}><i className="bi bi-storefront" /> Marketplace</Link></li>
-      </>
-    )
-  }
+  const vendorLinks = [
+    { to: "/vendor/dashboard", icon: "bi-grid-fill",      label: "Dashboard"   },
+    { to: "/vendor/products",  icon: "bi-box-seam",       label: "Products"    },
+    { to: "/vendor/orders",    icon: "bi-bag-check-fill", label: "Orders"      },
+    { to: "/shop",             icon: "bi-storefront",     label: "Marketplace" },
+  ]
 
-  const renderUserLinks = () => {
-    if (role !== "user") return null
-    return (
-      <>
-        <li><Link to="/shop"   className={`sidebar-link ${isActive("/shop")}`}><i className="bi bi-storefront" /> Shop</Link></li>
-        <li><Link to="/cart"   className={`sidebar-link ${isActive("/cart")}`}><i className="bi bi-cart-fill" /> My Cart</Link></li>
-        <li><Link to="/orders" className={`sidebar-link ${isActive("/orders")}`}><i className="bi bi-bag-check-fill" /> My Orders</Link></li>
-      </>
-    )
-  }
+  const userLinks = [
+    { to: "/shop",   icon: "bi-storefront",     label: "Shop"      },
+    { to: "/cart",   icon: "bi-cart-fill",      label: "My Cart"   },
+    { to: "/orders", icon: "bi-bag-check-fill", label: "My Orders" },
+  ]
 
-  const renderUserInfo = () => {
-    if (!user) return null
-    return (
-      <div className="sidebar-user">
-        <div className="sidebar-avatar">
-          {/* {user.firstName?.[0]}{user.lastName?.[0]} */}
-        </div>
-        <div>
-          <div className="sidebar-user-name">Hello, {user.firstName}</div>
-          {/* <div className="sidebar-user-role">{user.roles}</div> */}
-        </div>
-      </div>
-    )
-  }
+  const roleLinks =
+    role === "admin"  ? adminLinks  :
+    role === "vendor" ? vendorLinks :
+    userLinks
 
-  return (
-    
-    <div className="sidebar">
+  const commonLinks = [
+    { to: "/me",         icon: "bi-person-circle", label: "Profile"    },
+    { to: "/categories", icon: "bi-tags-fill",     label: "Categories" },
+  ]
 
+  const allLinks = [...roleLinks, ...commonLinks]
+
+  const initials = user
+    ? `${user.firstName?.[0] ?? ""}${user.lastName?.[0] ?? ""}`.toUpperCase()
+    : "?"
+
+  const SidebarContent = () => (
+    <>
       <div className="sidebar-brand">
-        <div className="sidebar-brand-name">
-          <Link className="navbar-brand" to="/">
-          Nana's <span style={{ color: "var(--pink)" }}>Pourfection</span> Hub
+        <Link className="sidebar-brand-name" to="/">
+          Nana's <span>Pourfection</span> Hub
         </Link>
-        </div>
         <span className="sidebar-role-badge">{getRoleLabel()}</span>
       </div>
 
       <ul className="sidebar-nav">
-        {renderAdminLinks()}
-        {renderVendorLinks()}
-        {renderUserLinks()}
-        <li><Link to="/me"         className={`sidebar-link ${isActive("/me")}`}><i className="bi bi-person-circle" /> Profile</Link></li>
-        <li><Link to="/categories" className={`sidebar-link ${isActive("/categories")}`}><i className="bi bi-tags-fill" /> Categories</Link></li>
+        {allLinks.map(l => (
+          <li key={l.to}>
+            <Link to={l.to} className={`sidebar-link ${isActive(l.to)}`}>
+              <i className={`bi ${l.icon}`} />
+              {!collapsed && <span>{l.label}</span>}
+            </Link>
+          </li>
+        ))}
       </ul>
 
       <div className="sidebar-footer">
-        {renderUserInfo()}
+        {user && !collapsed && (
+          <div className="sidebar-user">
+            <div className="sidebar-avatar-sm">{initials}</div>
+            <div className="sidebar-user-name">Hello, {user.firstName}</div>
+          </div>
+        )}
         <button onClick={handleLogout} className="sidebar-logout">
-          <i className="bi bi-box-arrow-right me-1" />
-          Logout
+          <i className="bi bi-box-arrow-right" />
+          {!collapsed && <span>Logout</span>}
         </button>
       </div>
+    </>
+  )
 
-    </div>
+  return (
+    <>
+      {/* ── DESKTOP TOGGLE BUTTON ── */}
+      <button
+        className="sidebar-desktop-toggle d-none d-lg-flex"
+        onClick={() => setCollapsed(prev => !prev)}
+        title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+      >
+        <i className={`bi ${collapsed ? "bi-chevron-right" : "bi-chevron-left"}`} />
+      </button>
+
+      {/* ── MOBILE TOGGLE BUTTON ── */}
+      <button
+        className="sidebar-mobile-toggle d-flex d-lg-none"
+        onClick={() => setMobileOpen(true)}
+        aria-label="Open sidebar"
+      >
+        <i className="bi bi-layout-sidebar" />
+      </button>
+
+      {/* ── DESKTOP SIDEBAR ── */}
+      <div className={`sidebar d-none d-lg-flex ${collapsed ? "sidebar-collapsed" : ""}`}>
+        <SidebarContent />
+      </div>
+
+      {/* ── MOBILE OFFCANVAS SIDEBAR ── */}
+      <div className={`sidebar-mobile-overlay ${mobileOpen ? "open" : ""}`} onClick={() => setMobileOpen(false)} />
+      <div className={`sidebar sidebar-mobile d-flex d-lg-none ${mobileOpen ? "open" : ""}`}>
+        <button
+          className="sidebar-mobile-close"
+          onClick={() => setMobileOpen(false)}
+          aria-label="Close sidebar"
+        >
+          <i className="bi bi-x-lg" />
+        </button>
+        <SidebarContent />
+      </div>
+    </>
   )
 }
 
