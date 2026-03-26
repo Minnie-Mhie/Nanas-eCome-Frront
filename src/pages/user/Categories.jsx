@@ -66,7 +66,7 @@ const Categories = () => {
     setLoadingProducts(true)
     setProducts([])
     try {
-      const res = await axios.get(`http://localhost:5000/api/v1/products/category/${category}`)
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/products/category/${category}`)
       setProducts(res.data.data)
     } catch (error) {
       console.log(error)

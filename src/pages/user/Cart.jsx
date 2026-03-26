@@ -52,7 +52,7 @@ const Cart = () => {
     showModal("Remove Item", "Remove this item from your cart?", "warning",
       async () => {
         try {
-          await axios.delete(`http://localhost:5000/api/v1/cart/remove/${productId}`, { headers })
+          await axios.delete(`${import.meta.env.VITE_API_URL}/api/v1/cart/remove/${productId}`, { headers })
           fetchCart()
         } catch (error) {
           console.log(error)
