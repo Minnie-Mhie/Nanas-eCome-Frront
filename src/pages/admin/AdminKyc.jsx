@@ -3,7 +3,7 @@ import axios from "axios"
 import Sidebar from "../../components/Sidebar"
 import Modal from "../../components/Modal"
 import "../../style/AdminKyc.css"
-import api from "../../api/Api"
+import api from "../../api/api"
 
 const AdminKyc = () => {
   const [activities, setActivities] = useState([])

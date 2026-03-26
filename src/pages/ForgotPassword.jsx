@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useFormik } from "formik"
 import axios from "axios"
-import api from "../api/Api"
+import api from "../api/api"
 import { Link, useNavigate } from "react-router-dom"
 import Modal from "../components/Modal"
 

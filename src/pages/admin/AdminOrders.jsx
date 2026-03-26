@@ -3,6 +3,7 @@ import axios from "axios"
 import Sidebar from "../../components/Sidebar"
 import Modal from "../../components/Modal"
 import "../../style/AdminOrders.css"
+import api from "../../api/api"
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([])
