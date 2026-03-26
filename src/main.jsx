@@ -7,7 +7,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import "./App.css"
 import appSlice from "./redux/appSlice.js"
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import axiosInstance from "./api/axiosInstance.js";
+
+
 
 axios.get("https://separate-backend.vercel.app/api/v1/products").catch(() => {})
 
