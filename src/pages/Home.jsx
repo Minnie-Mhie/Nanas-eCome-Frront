@@ -59,7 +59,7 @@ const Home = () => {
     <div className="home-page">
 
       {/* ─── NAVBAR ─── */}
-      <nav className="home-navbar nana-navbar navbar navbar-expand-lg sticky-top">
+      <nav className="home-navbar">
         <Link to="/" className="home-navbar-brand">
           Nana's <span>Pourfection</span> Hub
         </Link>
