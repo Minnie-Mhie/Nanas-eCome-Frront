@@ -3,6 +3,7 @@ import axios from "axios"
 import Sidebar from "../../components/Sidebar"
 import Modal from "../../components/Modal"
 import "../../style/VendorDashboard.css"
+import axiosInstance from "../../api/axiosInstance"
 // import "../../font/ballmain font/Ballmain.otf"
 
 const VendorDashboard = () => {
