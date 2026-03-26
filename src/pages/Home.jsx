@@ -65,11 +65,11 @@ const Home = () => {
         </Link>
         <div className="home-nav-links">
           <a href="#about"   className="home-nav-link">About</a>
-          <a href="#vendors" className="home-nav-link">Vendors</a>
+          <a href="#vendors" className="home-nav-link">Vendor</a>
           <a href="#why"     className="home-nav-link">Why Us</a>
-          <a href="/contact" className="home-nav-link">Contact Us</a>
+          <a href="/contact" className="home-nav-link">Contact</a>
           <Link to="/login"    className="home-btn-outline">Login</Link>
-          <Link to="/register" className="home-btn-solid">Get Started</Link>
+          <Link to="/register" className="home-btn-solid">Start</Link>
         </div>
       </nav>
 
