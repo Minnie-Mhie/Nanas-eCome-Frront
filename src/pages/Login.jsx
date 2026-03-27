@@ -45,7 +45,7 @@ const Login = () => {
         console.log(response)
 
         const decoded = jwtDecode(response.data.token)
-        // localStorage.setItem("token", response.data.token)
+        localStorage.setItem("token", response.data.token)
         cookies.set("token", response.data.token, {
           expires: new Date(decoded.exp * 1000),
           path: "/",
