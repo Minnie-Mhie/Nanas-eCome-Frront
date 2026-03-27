@@ -81,7 +81,9 @@ const Login = () => {
     <div className="auth-page">
       <div className="auth-card fade-up">
         <div className="auth-logo">
-          Nana's <span>Pourfection</span> Hub
+          <Link to="/">
+    Nana's <span>Pourfection</span> Hub
+  </Link>
         </div>
         <div className="auth-subtitle">Welcome back! Sign in to your account</div>
 
