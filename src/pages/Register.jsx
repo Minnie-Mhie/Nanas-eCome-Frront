@@ -226,7 +226,7 @@ const Register = () => {
           </button>
 
           <div className="auth-logo">
-             <Link to="/">
+             <Link to="/" className="home-navbar-brand">
     Nana's <span>Pourfection</span> Hub
   </Link>Hub
           </div>
