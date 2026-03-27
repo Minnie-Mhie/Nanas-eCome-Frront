@@ -30,20 +30,43 @@ const AdminVendors = () => {
 
   useEffect(() => { fetchVendors() }, [])
 
-  const handleApprove = (vendorId) => {
-    showModal("Approve Vendor", "Are you sure you want to approve this vendor?", "success",
-      async () => {
-        try {
-          await axios.patch(`${import.meta.env.VITE_API_URL}/api/v1/vendor/approve/${vendorId}`, {}, { headers })
-          showModal("Approved", "Vendor approved successfully", "success")
-          fetchVendors()
-        } catch (error) {
-          console.log(error)
-          showModal("Error", "Failed to approve vendor", "danger")
-        }
+//   const handleApprove = (vendorId) => {
+//     showModal("Approve Vendor", "Are you sure you want to approve this vendor?", "success",
+//       async () => {
+//         try {
+//           await axios.patch(`${import.meta.env.VITE_API_URL}/api/v1/vendor/approve/${vendorId}`, {}, { headers })
+//           // showModal("Approved", "Vendor approved successfully", "success")
+// showModal("Approved", "Vendor approved successfully", "success", null);
+
+//           fetchVendors()
+//         } catch (error) {
+//           console.log(error)
+//           showModal("Error", "Failed to approve vendor", "danger")
+//         }
+//       }
+//     )
+//   }
+
+ const handleApprove = (vendorId) => {
+  showModal(
+    "Approve Vendor", 
+    "Are you sure?", 
+    "success",
+    async () => {
+      try {
+        setModal(prev => ({ ...prev, isOpen: false })); 
+        
+        await axios.patch(`${import.meta.env.VITE_API_URL}/api/v1/vendor/approve/${vendorId}`, {}, { headers });
+        
+        await fetchVendors();
+        
+        showModal("Approved", "Vendor approved successfully", "success", null);
+      } catch (error) {
+        showModal("Error", "Failed to approve vendor", "danger", null);
       }
-    )
-  }
+    }
+  );
+}
 
   const handleReject = (vendorId) => {
     showModal("Reject Vendor", "Are you sure you want to reject this vendor application?", "danger",
