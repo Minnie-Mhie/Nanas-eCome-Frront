@@ -36,13 +36,13 @@ const Login = () => {
     },
     onSubmit: async (values) => {
       try {
-        console.log(values)
+        // console.log(values)
         const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/login`, {
           email:    values.email,
           password: values.password,
         })
 
-        // console.log(response)
+        console.log(response)
 
         const decoded = jwtDecode(response.data.token)
         // localStorage.setItem("token", response.data.token)
