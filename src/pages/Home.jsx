@@ -78,9 +78,9 @@ const Home = () => {
   </Link>
 
   <div className="home-nav-links">
-    <Link to="/#about" className="home-nav-link">About</Link>
-    <Link to="/#vendors" className="home-nav-link">Vendors</Link>
-    <Link to="/#why" className="home-nav-link">Why Us</Link>
+    <Link to="#about" className="home-nav-link">About</Link>
+    <Link to="#vendors" className="home-nav-link">Vendors</Link>
+    <Link to="#why" className="home-nav-link">Why Us</Link>
     <Link to="/contact" className="home-nav-link">Contact Us</Link>
 
     <div className="home-nav-actions">
