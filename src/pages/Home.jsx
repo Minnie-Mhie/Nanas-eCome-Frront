@@ -58,7 +58,8 @@ const Home = () => {
   return (
     <div className="home-page">
 
-      {/* <nav className="home-navbar">
+      {/* ─── NAVBAR ─── */}
+      <nav className="home-navbar">
         <Link to="/" className="home-navbar-brand">
           Nana's <span>Pourfection</span> Hub
         </Link>
@@ -70,27 +71,9 @@ const Home = () => {
           <Link to="/login"    className="home-btn-outline">Login</Link>
           <Link to="/register" className="home-btn-solid">Get Started</Link>
         </div>
-      </nav> */}
+      </nav>
 
-      <nav className="home-navbar">
-  <Link to="/" className="home-navbar-brand">
-    Nana's <span>Pourfection</span> Hub
-  </Link>
-
-  <div className="home-nav-links">
-    <Link to="#about" className="home-nav-link">About</Link>
-    <Link to="#vendors" className="home-nav-link">Vendors</Link>
-    <Link to="#why" className="home-nav-link">Why Us</Link>
-    <Link to="/contact" className="home-nav-link">Contact Us</Link>
-
-    <div className="home-nav-actions">
-      <Link to="/login" className="home-btn-outline">Login</Link>
-      <Link to="/register" className="home-btn-solid">Get Started</Link>
-    </div>
-  </div>
-</nav>
-
-     
+      {/* ─── CAROUSEL ─── */}
       <div className="home-carousel">
         {slides.map((slide, i) => (
           <div
