@@ -168,7 +168,7 @@ const Shop = () => {
         <div className="page-header d-flex align-items-center justify-content-between">
           <div>
             <h2>Marketplace</h2>
-            <p>Discover handmade resin artworks & lip care products</p>
+            <p>Discover resin artworks, lip care products and other products of your choice.</p>
           </div>
           <button className="btn btn-navy" onClick={() => navigate("/cart")}>
             <i className="bi bi-cart-fill me-2" />My Cart

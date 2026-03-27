@@ -43,7 +43,7 @@ const Login = () => {
           password: values.password,
         })
 
-        console.log(response)
+        console.log(response.data)
 
         const decoded = jwtDecode(response.data.token)
         localStorage.setItem("token", response.data.token)
