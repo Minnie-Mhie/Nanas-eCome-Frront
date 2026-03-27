@@ -198,7 +198,7 @@ const ContactUs = () => {
             >
               <i className="bi bi-tiktok" />
             </a>
-          </div>
+          </div> <br />
           <p className="contact-info-sub"><marquee>Kindly follow us on all our social media handles.</marquee></p>
         </div>
 
