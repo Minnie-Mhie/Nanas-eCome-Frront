@@ -802,3 +802,61 @@
   margin: 0 auto;
   line-height: 1.8;
 }
+
+/* ─── NAV RESPONSIVENESS FIX ─── */
+
+/* allow wrapping without overflow */
+.home-navbar {
+  flex-wrap: wrap;
+}
+
+/* improve spacing + prevent overflow */
+.home-nav-links {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* group buttons nicely */
+.home-nav-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* 🔽 TABLET */
+@media (max-width: 900px) {
+  .home-nav-links {
+    gap: 8px;
+  }
+
+  .home-nav-link {
+    font-size: 13px;
+  }
+}
+
+/* 🔽 MOBILE */
+@media (max-width: 600px) {
+  .home-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .home-nav-links {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .home-nav-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .home-btn-outline,
+  .home-btn-solid {
+    width: 100%;
+    text-align: center;
+  }
+}
