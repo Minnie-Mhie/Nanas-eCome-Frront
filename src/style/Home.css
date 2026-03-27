@@ -28,6 +28,14 @@
   text-decoration: none;
 }
 
+.home-navbar-branded {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: navy;
+  text-decoration: none;
+}
+
 .home-navbar-brand span {
   color: #FF2D8B;
 }
