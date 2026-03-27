@@ -3,7 +3,7 @@ import React from 'react'
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://separate-backend.vercel.app/api/v1", 
+  baseURL: "https://separate-backend.vercel.app", 
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
