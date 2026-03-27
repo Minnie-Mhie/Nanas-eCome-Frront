@@ -58,7 +58,7 @@ const Home = () => {
   return (
     <div className="home-page">
 
-      {/* <nav className="home-navbar">
+      <nav className="home-navbar">
         <Link to="/" className="home-navbar-brand">
           Nana's <span>Pourfection</span> Hub
         </Link>
@@ -70,9 +70,9 @@ const Home = () => {
           <Link to="/login"    className="home-btn-outline">Login</Link>
           <Link to="/register" className="home-btn-solid">Get Started</Link>
         </div>
-      </nav> */}
+      </nav>
 
-      <nav className="home-navbar">
+      {/* <nav className="home-navbar">
   <Link to="/" className="home-navbar-brand">
     Nana's <span>Pourfection</span> Hub
   </Link>
@@ -88,7 +88,7 @@ const Home = () => {
       <Link to="/register" className="home-btn-solid">Get Started</Link>
     </div>
   </div>
-</nav>
+</nav> */}
 
      
       <div className="home-carousel">
