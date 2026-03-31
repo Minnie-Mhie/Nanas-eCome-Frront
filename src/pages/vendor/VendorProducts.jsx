@@ -164,7 +164,7 @@ const VendorProducts = () => {
     onSubmit: async (values, { resetForm }) => {
       try {
         const finalCategory = values.category === "Other" ? values.customCategory : values.category
-        await axios.patch(`http://localhost:5000/api/v1/products/edit/${editProduct._id}`, {
+        await axios.patch(`${import.meta.env.VITE_API_URL}/api/v1/products/edit/${editProduct._id}`, {
           productName:        values.productName,
           productPrice:       values.productPrice,
           productQuantity:    values.productQuantity,
