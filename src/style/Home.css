@@ -7,7 +7,88 @@
   background: #fff;
 }
 
-/* ─── PUBLIC NAVBAR ─── */
+/* NAVBAR BASE */
+.home-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  position: relative;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* NAV LINKS */
+.home-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.home-nav-actions {
+  display: flex;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .home-nav-links {
+    position: absolute;
+    top: 70px;
+    right: 5%;
+    background: white;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 250px;
+    padding: 20px;
+    gap: 15px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: 0.3s ease;
+  }
+
+  .home-nav-links.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .home-nav-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .home-btn-outline,
+  .home-btn-solid {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 .home-navbar {
   background: linear-gradient(90deg, #1B1B6E, #2D0A6B);
   padding: 14px 32px;

@@ -3,6 +3,8 @@ import { useState, useEffect } from "react"
 import "../style/Home.css"
 
 const Home = () => {
+  const [menuOpen, setMenuOpen] = useState(false)
+  
   const [activeSlide, setActiveSlide] = useState(0)
 
   const slides = [
@@ -70,7 +72,7 @@ const Home = () => {
           <Link to="/login"    className="home-btn-outline">Login</Link>
           <Link to="/register" className="home-btn-solid">Get Started</Link>
         </div>
-      </nav> */}
+      </nav> 
 
       <nav className="home-navbar">
   <Link to="/" className="home-navbar-brand">
@@ -88,6 +90,38 @@ const Home = () => {
       <Link to="/register" className="home-btn-solid">Get Started</Link>
     </div>
   </div>
+</nav>*/}
+
+
+
+<nav className="home-navbar">
+
+  <Link to="/" className="home-navbar-brand">
+    Nana's <span>Pourfection</span> Hub
+  </Link>
+
+  <div 
+    className={`hamburger ${menuOpen ? "active" : ""}`} 
+    onClick={() => setMenuOpen(!menuOpen)}
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div className={`home-nav-links ${menuOpen ? "open" : ""}`}>
+
+    <a href="#about" className="home-nav-link" onClick={() => setMenuOpen(false)}>About</a>
+    <a href="#vendors" className="home-nav-link" onClick={() => setMenuOpen(false)}>Vendors</a>
+    <a href="#why" className="home-nav-link" onClick={() => setMenuOpen(false)}>Why Us</a>
+    <Link to="/contact" className="home-nav-link" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+
+    <div className="home-nav-actions">
+      <Link to="/login" className="home-btn-outline" onClick={() => setMenuOpen(false)}>Login</Link>
+      <Link to="/register" className="home-btn-solid" onClick={() => setMenuOpen(false)}>Get Started</Link>
+    </div>
+
+  </div>
+
 </nav>
 
      

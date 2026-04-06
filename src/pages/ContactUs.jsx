@@ -150,7 +150,7 @@ const ContactUs = () => {
             <div>
               <div className="contact-info-label">Phone</div>
               <div className="contact-info-value">
-                <a href="tel:+2348102232987">08102232987</a>
+                <a href="tel:+2348143768089">08143768089</a>
               </div>
             </div>
           </div>
@@ -181,7 +181,8 @@ const ContactUs = () => {
               <i className="bi bi-instagram" />
             </a>
             <a
-              href="https://wa.me/qr/TWR3UEYYQ4MGF1"
+              // href="https://wa.me/message/GP5ZUE4BEFXCP1"
+              href="https://wa.me/message/GP5ZUE4BEFXCP1?text=Hi%20My%20name%20is%20[Your Name]%20!%20I%20want%20to%20make%20an%20enquiry%20about%20your%20products."
               target="_blank"
               rel="noreferrer"
               className="contact-social-btn social-whatsapp"
