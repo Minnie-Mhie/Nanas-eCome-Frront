@@ -226,9 +226,9 @@ const Register = () => {
           </button>
 
           <div className="auth-logo">
-             <Link to="/" className="home-navbar-brand">
+             <Link to="/" className="home-navbar-brand brandly">
     Nana's <span>Pourfection</span> Hub
-  </Link>Hub
+  </Link>
           </div>
 
           <div className="register-role-badge-wrap">
