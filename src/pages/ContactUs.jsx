@@ -199,6 +199,18 @@ const ContactUs = () => {
             >
               <i className="bi bi-tiktok" />
             </a>
+
+  <a
+              href="https://l.instagram.com/?u=https%3A%2F%2Flinktr.ee%2FNanas_Pourfection_Hub%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnLFXri322QdjDy09aRZtkYrqy4QSFCsRCKmtEEKI_b9OP_jhmCBRm79U0snA_aem_YUlf54lBpar0ws47u_V1hQ&e=AT5Y3fNIGhWHDRXOlaf7GMeFneNVhSRTyYwNKV3cfMUFDVv3Pxh-NCOonr_0jYE67eDKlvMCuzTQ6NLrS9DAiGIdC5aFrmv_za8P3xTrhw"
+              target="_blank"
+              rel="noreferrer"
+              className="contact-social-btn social-tree"
+              title="LinkTree"
+            >
+              <i className="bi bi-tree" />
+            </a>
+
+            
           </div> <br />
           <p className="contact-info-sub"><marquee>Kindly follow us on all our social media handles.</marquee></p>
         </div>
