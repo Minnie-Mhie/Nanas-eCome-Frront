@@ -27,7 +27,7 @@
 .hamburger span {
   width: 25px;
   height: 3px;
-  background: #333;
+  background: #FF2D8B;
   border-radius: 2px;
   transition: 0.3s;
 }
@@ -45,19 +45,19 @@
   margin-left: 10px;
 }
 
-/* MOBILE STYLES */
 @media (max-width: 768px) {
 
   .hamburger {
     display: flex;
   }
 
+
   .home-nav-links {
     position: absolute;
     top: 70px;
     right: 5%;
-    background: white;
-    color: #2D0A6B;
+    background: #1B1B6E;
+    /* color: #2D0A6B; */
     flex-direction: column;
     align-items: flex-start;
     width: 250px;
@@ -729,11 +729,14 @@
 .vendor-cta-btn {
   background: #FF2D8B;
   color: #fff;
-  padding: 14px 40px;
+  /* padding: 14px 40px; */
   border-radius: 12px;
   text-decoration: none;
   font-weight: 800;
   font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 8px 24px rgba(255, 45, 139, 0.35);
   transition: opacity 0.2s;
 }
