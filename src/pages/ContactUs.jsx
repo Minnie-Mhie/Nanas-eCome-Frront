@@ -182,7 +182,7 @@ const ContactUs = () => {
             </a>
             <a
               // href="https://wa.me/message/GP5ZUE4BEFXCP1"
-              href="https://wa.me/message/GP5ZUE4BEFXCP1?text=Hi%20My%20name%20is%20[Your Name]%20!%20I%20want%20to%20make%20an%20enquiry%20about%20your%20products."
+              href="https://wa.me/2348143768089?text=Hi%20My%20name%20is%20[Your Name]%20!%20I%20want%20to%20make%20an%20enquiry%20about%20your%20products."
               target="_blank"
               rel="noreferrer"
               className="contact-social-btn social-whatsapp"
