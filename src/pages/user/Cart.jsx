@@ -3,21 +3,30 @@ import { useFormik } from "formik"
 import * as yup from "yup"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { jwtDecode } from "jwt-decode"
 import Sidebar from "../../components/Sidebar"
 import Modal from "../../components/Modal"
 import "../../style/Cart.css"
 
 const Cart = () => {
-  const [cart, setCart]               = useState(null)
-  const [total, setTotal]             = useState(0)
-  const [loading, setLoading]         = useState(true)
-  const [placingOrder, setPlacingOrder] = useState(false)
-  const [showCheckout, setShowCheckout] = useState(false)
-  const [modal, setModal]             = useState({ isOpen: false, title: "", message: "", type: "info", onConfirm: null })
+  const [cart, setCart]                   = useState(null)
+  const [total, setTotal]                 = useState(0)
+  const [loading, setLoading]             = useState(true)
+  const [showCheckout, setShowCheckout]   = useState(false)
+  const [payLoading, setPayLoading]       = useState(false)
+  const [modal, setModal]                 = useState({ isOpen: false, title: "", message: "", type: "info", onConfirm: null })
 
-  const token = localStorage.getItem("token")
+  const token   = localStorage.getItem("token")
   const headers = { Authorization: `Bearer ${token}` }
   const navigate = useNavigate()
+
+  let userEmail = ""
+  try {
+    const decoded = jwtDecode(token)
+    userEmail = decoded.email || ""
+  } catch (e) {
+    console.log(e)
+  }
 
   const showModal = (title, message, type = "info", onConfirm = null) => {
     setModal({ isOpen: true, title, message, type, onConfirm })
@@ -81,7 +90,7 @@ const Cart = () => {
       street:  "",
       city:    "",
       state:   "",
-      country: "",
+      country: "Nigeria",
     },
     validationSchema: yup.object({
       street:  yup.string().required("Street address is required"),
@@ -90,22 +99,40 @@ const Cart = () => {
       country: yup.string().required("Country is required"),
     }),
     onSubmit: async (values) => {
-      setPlacingOrder(true)
+      setPayLoading(true)
       try {
-        await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/orders/place`, values, { headers })
-        showModal("Order Placed!", "Your order has been placed successfully. You can track it in My Orders.", "success")
-        setShowCheckout(false)
-        fetchCart()
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/v1/payment/initialize`,
+          {
+            email:           userEmail,
+            amount:          total,
+            shippingAddress: values,
+          },
+          { headers }
+        )
+        window.location.href = res.data.authorization_url
       } catch (error) {
         console.log(error)
-        showModal("Error", error.response?.data?.message || "Failed to place order", "danger")
+        showModal("Error", error.response?.data?.message || "Failed to initialize payment", "danger")
       } finally {
-        setPlacingOrder(false)
+        setPayLoading(false)
       }
     },
   })
 
   const isEmpty = !cart || cart.items?.length === 0
+
+  const getFieldClass = (field) => {
+    if (formik.touched[field] && formik.errors[field]) return "form-control is-invalid"
+    return "form-control"
+  }
+
+  const renderFieldError = (field) => {
+    if (formik.touched[field] && formik.errors[field]) {
+      return <div className="invalid-feedback">{formik.errors[field]}</div>
+    }
+    return null
+  }
 
   const renderContent = () => {
     if (loading) {
@@ -119,11 +146,11 @@ const Cart = () => {
     if (isEmpty) {
       return (
         <div className="cart-empty">
-          <i className="bi bi-cart-x cart-empty-icon" />
+          <i className="bi bi-bag cart-empty-icon" />
           <h4>Your cart is empty</h4>
           <p>Browse the marketplace and add products you love</p>
           <button className="btn btn-primary" onClick={() => navigate("/shop")}>
-            <i className="bi bi-shop me-2" />Browse Products
+            <i className="bi bi-storefront me-2" />Browse Products
           </button>
         </div>
       )
@@ -174,7 +201,7 @@ const Cart = () => {
                 </div>
 
                 <button
-                  className="btn btn-danger btn-sm cart-remove-btn"
+                  className="btn btn-ghost btn-sm cart-remove-btn"
                   onClick={() => handleRemove(item.product?._id)}
                 >
                   <i className="bi bi-trash" />
@@ -206,10 +233,10 @@ const Cart = () => {
           </div>
 
           <button
-            className="btn btn-primary w-100 py-2"
+            className="btn btn-primary w-100 py-2 mb-2"
             onClick={() => setShowCheckout(!showCheckout)}
           >
-            <i className="bi bi-bag-check-fill me-2" />
+            <i className="bi bi-bag-check me-2" />
             {showCheckout ? "Hide Checkout" : "Proceed to Checkout"}
           </button>
 
@@ -220,72 +247,78 @@ const Cart = () => {
   }
 
   const renderCheckoutForm = () => {
-    if (!showCheckout) {
-      return null
-    }
+    if (!showCheckout) return null
 
     return (
-      <div className="card cart-checkout-card mt-3 fade-up">
+      <div className="card cart-checkout-card fade-up">
         <div className="card-body">
+
           <div className="cart-checkout-title">
             <i className="bi bi-truck me-2" />Shipping Address
           </div>
+
           <form onSubmit={formik.handleSubmit}>
             <div className="mb-3">
               <label>Street Address</label>
               <input
                 name="street" type="text"
-                className={`form-control ${formik.touched.street && formik.errors.street ? "is-invalid" : ""}`}
-                placeholder="123 Main St"
+                className={getFieldClass("street")}
+                placeholder="123 Main Street"
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.street}
               />
-              {formik.touched.street && formik.errors.street && (
-                <div className="invalid-feedback">{formik.errors.street}</div>
-              )}
+              {renderFieldError("street")}
             </div>
+
             <div className="mb-3">
               <label>City</label>
               <input
                 name="city" type="text"
-                className={`form-control ${formik.touched.city && formik.errors.city ? "is-invalid" : ""}`}
+                className={getFieldClass("city")}
                 placeholder="Lagos"
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.city}
               />
-              {formik.touched.city && formik.errors.city && (
-                <div className="invalid-feedback">{formik.errors.city}</div>
-              )}
+              {renderFieldError("city")}
             </div>
+
             <div className="mb-3">
               <label>State</label>
               <input
                 name="state" type="text"
-                className={`form-control ${formik.touched.state && formik.errors.state ? "is-invalid" : ""}`}
+                className={getFieldClass("state")}
                 placeholder="Lagos State"
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.state}
               />
-              {formik.touched.state && formik.errors.state && (
-                <div className="invalid-feedback">{formik.errors.state}</div>
-              )}
+              {renderFieldError("state")}
             </div>
-            <div className="mb-3">
+
+            <div className="mb-4">
               <label>Country</label>
               <input
                 name="country" type="text"
-                className={`form-control ${formik.touched.country && formik.errors.country ? "is-invalid" : ""}`}
+                className={getFieldClass("country")}
                 placeholder="Nigeria"
                 onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.country}
               />
-              {formik.touched.country && formik.errors.country && (
-                <div className="invalid-feedback">{formik.errors.country}</div>
-              )}
+              {renderFieldError("country")}
             </div>
-            <button type="submit" className="btn btn-primary w-100" disabled={placingOrder}>
-              {placingOrder
-                ? <><span className="spinner-border spinner-border-sm me-2" />Placing Order...</>
-                : <><i className="bi bi-check-circle-fill me-2" />Place Order</>
+
+            <div className="cart-paystack-info">
+              <i className="bi bi-shield-lock-fill me-2" />
+              Secured by Paystack — you will be redirected to complete payment safely
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-primary w-100 cart-pay-btn"
+              disabled={payLoading}
+            >
+              {payLoading
+                ? <><span className="spinner-border spinner-border-sm me-2" />Processing...</>
+                : <><i className="bi bi-credit-card me-2" />Pay ₦{total?.toLocaleString()}</>
               }
             </button>
           </form>
+
         </div>
       </div>
     )
@@ -308,7 +341,7 @@ const Cart = () => {
               <i className="bi bi-arrow-left me-2" />Continue Shopping
             </button>
             {!isEmpty && (
-              <button className="btn btn-danger" onClick={handleClearCart}>
+              <button className="btn btn-outline" onClick={handleClearCart}>
                 <i className="bi bi-trash me-2" />Clear Cart
               </button>
             )}
@@ -322,10 +355,7 @@ const Cart = () => {
       <Modal
         isOpen={modal.isOpen} title={modal.title} message={modal.message}
         type={modal.type} onConfirm={modal.onConfirm}
-        onClose={() => {
-          setModal({ ...modal, isOpen: false })
-          if (modal.title === "Order Placed!") navigate("/orders")
-        }}
+        onClose={() => setModal({ ...modal, isOpen: false })}
       />
     </div>
   )
